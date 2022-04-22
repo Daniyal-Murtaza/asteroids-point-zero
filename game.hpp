@@ -6,6 +6,7 @@
 #include <string>
 #include <stdlib.h>
 #include <time.h>
+#include "asteroids_point_zero.hpp"
 
 class Game
 {
@@ -18,6 +19,8 @@ class Game
 
     // Current displayed texture
     SDL_Texture *gTexture = NULL;
+
+    int screen;
 
 public:
     bool init();

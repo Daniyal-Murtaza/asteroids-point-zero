@@ -64,6 +64,7 @@ bool Game::loadMedia()
 	bool success = true;
 
 	Drawing::assets = loadTexture("assets.png");
+	screen = 1;
 	gTexture = loadTexture("Startingscreen.png");
 	if (Drawing::assets == NULL || gTexture == NULL)
 	{
@@ -77,6 +78,7 @@ bool Game::BackgroundScreen()
 {
 	// Loading success flag
 	bool success = true;
+	screen = 2;
 	gTexture = loadTexture("bg.jpg");
 	if (gTexture == NULL)
 	{
@@ -90,6 +92,7 @@ bool Game::RulesScreen()
 {
 	// Loading success flag
 	bool success = true;
+	screen = 3;
 	gTexture = loadTexture("rules.png");
 	if (gTexture == NULL)
 	{
@@ -146,6 +149,7 @@ void Game::run()
 {
 	bool quit = false;
 	SDL_Event e;
+	asteroids_point_zero *apz = new asteroids_point_zero();
 
 	while (!quit)
 	{
@@ -177,6 +181,11 @@ void Game::run()
 		SDL_RenderClear(Drawing::gRenderer);					  // removes everything from renderer
 		SDL_RenderCopy(Drawing::gRenderer, gTexture, NULL, NULL); // Draws background to renderer
 		//***********************draw the objects here********************
+
+		if (screen == 2)
+		{
+			apz->draw_spaceship();
+		}
 
 		//****************************************************************
 		SDL_RenderPresent(Drawing::gRenderer); // displays the updated renderer
