@@ -73,11 +73,24 @@ bool Game::loadMedia()
 	return success;
 }
 
-bool Game::ChangeScreen()
+bool Game::BackgroundScreen()
 {
 	// Loading success flag
 	bool success = true;
 	gTexture = loadTexture("bg.jpg");
+	if (gTexture == NULL)
+	{
+		printf("Unable to run due to error: %s\n", SDL_GetError());
+		success = false;
+	}
+	return success;
+}
+
+bool Game::RulesScreen()
+{
+	// Loading success flag
+	bool success = true;
+	gTexture = loadTexture("rules.png");
 	if (gTexture == NULL)
 	{
 		printf("Unable to run due to error: %s\n", SDL_GetError());
@@ -152,11 +165,11 @@ void Game::run()
 				SDL_GetMouseState(&xMouse, &yMouse);
 				if (xMouse > 175 && xMouse < 424 && yMouse > 355 && yMouse < 385)
 				{
-					ChangeScreen();
+					BackgroundScreen();
 				}
 				if (xMouse > 234 && xMouse < 367 && yMouse > 413 && yMouse < 448)
 				{
-					ChangeScreen();
+					RulesScreen();
 				}
 			}
 		}

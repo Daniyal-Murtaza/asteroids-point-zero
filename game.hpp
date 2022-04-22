@@ -25,5 +25,6 @@ public:
     void close();
     SDL_Texture *loadTexture(std::string path);
     void run();
-    bool ChangeScreen();
+    bool BackgroundScreen();
+    bool RulesScreen();
 };
