@@ -1,6 +1,7 @@
 #include <SDL.h>
 #include "drawing.hpp"
 #include <iostream>
+#pragma once
 using namespace std;
 
 class Flying_Object
