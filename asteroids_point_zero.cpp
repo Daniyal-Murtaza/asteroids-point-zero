@@ -5,7 +5,12 @@ asteroids_point_zero::asteroids_point_zero()
     spaceship = new Spaceship();
 }
 
-asteroids_point_zero::draw_spaceship()
+void asteroids_point_zero::draw_spaceship()
 {
     spaceship->draw();
+}
+
+void asteroids_point_zero::checkMouseClick(int x, int y)
+{
+    spaceship->setMov(x,y);
 }

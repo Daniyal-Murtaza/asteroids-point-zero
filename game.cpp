@@ -1,8 +1,11 @@
 #include "game.hpp"
 #include "drawing.hpp"
+#include <vector>
+#include <time.h>
 
 SDL_Renderer *Drawing::gRenderer = NULL;
 SDL_Texture *Drawing::assets = NULL;
+static int screen;
 
 bool Game::init()
 {
@@ -10,10 +13,10 @@ bool Game::init()
 	bool success = true;
 
 	// Initialize SDL
-	if (SDL_Init(SDL_INIT_VIDEO) < 0)
+	if (SDL_Init(SDL_INIT_VIDEO || SDL_INIT_AUDIO) < 0)
 	{
 		printf("SDL could not initialize! SDL Error: %s\n", SDL_GetError());
-		success = false;
+		success = false;	
 	}
 	else
 	{
@@ -24,7 +27,7 @@ bool Game::init()
 		}
 
 		// Create window
-		gWindow = SDL_CreateWindow("HU Mania", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+		gWindow = SDL_CreateWindow("Asteroid Point Zero", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
 		if (gWindow == NULL)
 		{
 			printf("Window could not be created! SDL Error: %s\n", SDL_GetError());
@@ -51,6 +54,14 @@ bool Game::init()
 					printf("SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError());
 					success = false;
 				}
+				if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
+                {
+                    printf("SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError());
+                    success = false;
+                }
+				// else{
+				// 	cout << "song";
+				// }
 			}
 		}
 	}
@@ -71,6 +82,15 @@ bool Game::loadMedia()
 		printf("Unable to run due to error: %s\n", SDL_GetError());
 		success = false;
 	}
+	gMusic = Mix_LoadMUS("bg_music.mp3");
+    if (gMusic == NULL)
+    {
+        printf("SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError());
+        success = false;
+    }
+	// else{
+	// 	cout << "song";
+	// }
 	return success;
 }
 
@@ -117,6 +137,8 @@ void Game::close()
 	// Quit SDL subsystems
 	IMG_Quit();
 	SDL_Quit();
+	Mix_FreeMusic(gMusic);
+    gMusic = NULL;
 }
 
 SDL_Texture *Game::loadTexture(std::string path)
@@ -149,23 +171,26 @@ void Game::run()
 {
 	bool quit = false;
 	SDL_Event e;
+	// asteroids_point_zero apz;
 	asteroids_point_zero *apz = new asteroids_point_zero();
+	// if(screen == 1){	
+	// 	Mix_PlayMusic(gMusic, -2);
+	// }
 
 	while (!quit)
 	{
 		// Handle events on queue
 		while (SDL_PollEvent(&e) != 0)
 		{
+			int xMouse, yMouse;
 			// User requests quit
 			if (e.type == SDL_QUIT)
-			{
-				quit = true;
-			}
-
+            {
+                quit = true;
+            }
 			if (e.type == SDL_MOUSEBUTTONDOWN)
 			{
 				// this is a good location to add pigeon in linked list.
-				int xMouse, yMouse;
 				SDL_GetMouseState(&xMouse, &yMouse);
 				if (xMouse > 175 && xMouse < 424 && yMouse > 355 && yMouse < 385)
 				{
@@ -176,6 +201,20 @@ void Game::run()
 					RulesScreen();
 				}
 			}
+			if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_ESCAPE && (screen == 2 || screen == 3))
+            {
+                gTexture = loadTexture("Startingscreen.png");
+                screen = 1;
+            }	
+			if(e.type == SDL_MOUSEMOTION && screen == 2){
+					SDL_GetMouseState(&xMouse, &yMouse);
+					// cout << xMouse << " " << yMouse;
+					apz->checkMouseClick(xMouse, yMouse);
+				}
+			if( Mix_PlayingMusic() == 0 ){
+                	//Play the music
+                    Mix_PlayMusic( gMusic, -1 );
+                }
 		}
 
 		SDL_RenderClear(Drawing::gRenderer);					  // removes everything from renderer
@@ -191,5 +230,6 @@ void Game::run()
 		SDL_RenderPresent(Drawing::gRenderer); // displays the updated renderer
 
 		SDL_Delay(100); // causes sdl engine to delay for specified miliseconds
+		
 	}
 }

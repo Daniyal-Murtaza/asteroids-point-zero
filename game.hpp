@@ -1,4 +1,3 @@
-
 #include <SDL.h>
 #include <SDL_image.h>
 #include <stdio.h>
@@ -6,6 +5,8 @@
 #include <string>
 #include <stdlib.h>
 #include <time.h>
+#include <SDL_mixer.h>
+#include <SDL_ttf.h>
 #include "asteroids_point_zero.hpp"
 
 class Game
@@ -20,7 +21,10 @@ class Game
     // Current displayed texture
     SDL_Texture *gTexture = NULL;
 
-    int screen;
+    //The music that will be played
+    Mix_Music *gMusic = NULL;
+
+    
 
 public:
     bool init();

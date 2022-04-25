@@ -9,6 +9,7 @@ private:
 
 public:
     asteroids_point_zero();
-    ~asteroids_point_zero();
-    draw_spaceship();
+    // ~asteroids_point_zero();
+    void draw_spaceship();
+    void checkMouseClick(int, int);
 };
