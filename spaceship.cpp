@@ -8,5 +8,6 @@ void Spaceship::fly() {}
 
 void Spaceship::setMov(int x, int y){
     moverRect.x = x;
+    moverRect.y = y;
     // cout << x << " " << y;
 }
