@@ -21,10 +21,8 @@ class Game
     // Current displayed texture
     SDL_Texture *gTexture = NULL;
 
-    //The music that will be played
+    // The music that will be played
     Mix_Music *gMusic = NULL;
-
-    
 
 public:
     bool init();

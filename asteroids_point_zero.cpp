@@ -14,6 +14,7 @@ void asteroids_point_zero::draw_spaceship()
 void asteroids_point_zero::draw_small_asteroid()
 {
     small_asteroid->draw();
+    small_asteroid->fly();
 }
 
 void asteroids_point_zero::checkMouseClick(int x, int y)
