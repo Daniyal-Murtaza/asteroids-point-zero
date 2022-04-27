@@ -9,5 +9,5 @@ private:
 
 public:
     void fly();
-    Small_Asteroid();
+    Small_Asteroid(int);
 };

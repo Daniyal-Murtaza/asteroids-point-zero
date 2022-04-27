@@ -225,6 +225,7 @@ void Game::run()
 
 		if (screen == 2)
 		{
+			apz->create_objects();
 			apz->draw_spaceship();
 			apz->draw_small_asteroid();
 		}

@@ -1,6 +1,6 @@
 #include "small_asteroid.hpp"
 
-Small_Asteroid::Small_Asteroid() : Flying_Object({9, 321, 33, 61}, {200, 0, 60, 60}) {}
+Small_Asteroid::Small_Asteroid(int x) : Flying_Object({9, 321, 33, 61}, {x, 0, 60, 60}) {}
 
 void Small_Asteroid::fly()
 {

@@ -3,7 +3,7 @@
 asteroids_point_zero::asteroids_point_zero()
 {
     spaceship = new Spaceship();
-    small_asteroid = new Small_Asteroid();
+    // small_asteroid = new Small_Asteroid();
 }
 
 void asteroids_point_zero::draw_spaceship()
@@ -13,8 +13,22 @@ void asteroids_point_zero::draw_spaceship()
 
 void asteroids_point_zero::draw_small_asteroid()
 {
-    small_asteroid->draw();
-    small_asteroid->fly();
+    for (auto &a : small_asteroid)
+    {
+        a.draw();
+        a.fly();
+    }
+}
+
+void asteroids_point_zero::create_objects()
+{
+    int n = rand() % 550;
+    int p = rand() % 10;
+    if (p == 1)
+    {
+        Small_Asteroid s1(n);
+        small_asteroid.push_back(s1);
+    }
 }
 
 void asteroids_point_zero::checkMouseClick(int x, int y)
