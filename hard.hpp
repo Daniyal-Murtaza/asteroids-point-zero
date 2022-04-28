@@ -1,7 +1,7 @@
 #include "flying_object.hpp"
 #pragma once
 
-class Small_Asteroid : public Flying_Object
+class Hard : public Flying_Object
 {
 private:
     SDL_Rect mover, src;
@@ -11,6 +11,5 @@ public:
     bool end = false;
     bool exploded = false;
     void fly();
-    Small_Asteroid(int);
-    // SDL_Rect* getMov();
+    Hard(int);
 };

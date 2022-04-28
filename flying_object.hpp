@@ -14,4 +14,5 @@ public:
     void draw();
     virtual void fly();
     Flying_Object(SDL_Rect, SDL_Rect);
+    SDL_Rect getMov();
 };

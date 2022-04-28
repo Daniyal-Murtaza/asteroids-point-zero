@@ -12,3 +12,7 @@ void Flying_Object::draw()
 {
     SDL_RenderCopy(Drawing::gRenderer, Drawing::assets, &srcRect, &moverRect);
 }
+
+SDL_Rect Flying_Object::getMov(){
+    return moverRect;
+}

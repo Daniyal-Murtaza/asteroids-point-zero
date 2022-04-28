@@ -32,4 +32,7 @@ public:
     void run();
     bool BackgroundScreen();
     bool RulesScreen();
+    bool MediumScreen();
+    bool HardScreen();
+    bool LevelsScreen();
 };

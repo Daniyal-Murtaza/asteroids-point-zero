@@ -1,12 +1,11 @@
-#include "small_asteroid.hpp"
+#include "medium.hpp"
 
-Small_Asteroid::Small_Asteroid(int x) : Flying_Object({9, 321, 33, 61}, {x, 0, 60, 60}) {}
+Medium::Medium(int x) : Flying_Object({9, 321, 33, 61}, {x, 0, 60, 60}) {}
 
-void Small_Asteroid::fly()
+void Medium::fly()
 {
-
-    // Sprite will flap it wings
-    if (!exploded){
+    if (!exploded)
+    {
         switch (frame)
         {
         case 0:
@@ -46,9 +45,10 @@ void Small_Asteroid::fly()
             frame = 0;
             break;
         }
-    moverRect.y += 7;
+        moverRect.y += 15;
     }
-    else{
+    else
+    {
         switch (frame)
         {
         case 0:
@@ -72,19 +72,14 @@ void Small_Asteroid::fly()
             frame = 5;
             break;
         case 5:
-            srcRect = {682,748,154,165};
+            srcRect = {682, 748, 154, 165};
             frame = 6;
             break;
         case 6:
-            srcRect = {848,748,154,165};
+            srcRect = {848, 748, 154, 165};
             // frame = 7;
             end = true;
             break;
         }
     }
-    
 }
-
-// SDL_Rect* Small_Asteroid::getMov(){
-//     return getMov();
-// }

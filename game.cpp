@@ -122,6 +122,48 @@ bool Game::RulesScreen()
 	return success;
 }
 
+bool Game::LevelsScreen()
+{
+	// Loading success flag
+	bool success = true;
+	screen = 4;
+	gTexture = loadTexture("levels.png");
+	if (gTexture == NULL)
+	{
+		printf("Unable to run due to error: %s\n", SDL_GetError());
+		success = false;
+	}
+	return success;
+}
+
+bool Game::MediumScreen()
+{
+	// Loading success flag
+	bool success = true;
+	screen = 5;
+	gTexture = loadTexture("bg.jpg");
+	if (gTexture == NULL)
+	{
+		printf("Unable to run due to error: %s\n", SDL_GetError());
+		success = false;
+	}
+	return success;
+}
+
+bool Game::HardScreen()
+{
+	// Loading success flag
+	bool success = true;
+	screen = 6;
+	gTexture = loadTexture("bg.jpg");
+	if (gTexture == NULL)
+	{
+		printf("Unable to run due to error: %s\n", SDL_GetError());
+		success = false;
+	}
+	return success;
+}
+
 void Game::close()
 {
 	// Free loaded images
@@ -194,11 +236,27 @@ void Game::run()
 				SDL_GetMouseState(&xMouse, &yMouse);
 				if (xMouse > 175 && xMouse < 424 && yMouse > 355 && yMouse < 385)
 				{
-					BackgroundScreen();
+					LevelsScreen();
 				}
 				if (xMouse > 234 && xMouse < 367 && yMouse > 413 && yMouse < 448)
 				{
 					RulesScreen();
+				}
+				if (screen == 2)
+				{
+					apz->create_bullets(xMouse, yMouse);
+				}
+				if (xMouse > 75 && xMouse < 193 && yMouse > 236 && yMouse < 264)
+				{
+					BackgroundScreen();
+				}
+				if (xMouse > 226 && xMouse < 400 && yMouse > 235 && yMouse < 266)
+				{
+					MediumScreen();
+				}
+				if (xMouse > 429 && xMouse < 549 && yMouse > 236 && yMouse < 263)
+				{
+					HardScreen();
 				}
 			}
 			if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_ESCAPE && (screen == 2 || screen == 3))
@@ -225,9 +283,24 @@ void Game::run()
 
 		if (screen == 2)
 		{
-			apz->create_objects();
+			apz->create_small_asteroid();
 			apz->draw_spaceship();
 			apz->draw_small_asteroid();
+			apz->draw_bullets();
+		}
+		if (screen == 5)
+		{
+			apz->draw_spaceship();
+			apz->draw_medium();
+			apz->create_medium();
+			apz->draw_bullets();
+		}
+		if (screen == 6)
+		{
+			apz->draw_spaceship();
+			apz->draw_hard();
+			apz->create_hard();
+			apz->draw_bullets();
 		}
 
 		//****************************************************************
