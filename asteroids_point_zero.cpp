@@ -3,6 +3,9 @@
 asteroids_point_zero::asteroids_point_zero()
 {
     spaceship = new Spaceship();
+    Life = new Lives();
+    ML = new Mid_Life();
+    EL = new End_Life();
 }
 
 void asteroids_point_zero::draw_spaceship()
@@ -17,6 +20,21 @@ void asteroids_point_zero::draw_small_asteroid()
         a->draw();
         a->fly();
     }
+}
+
+void asteroids_point_zero::draw_heart()
+{
+    Life->draw();
+}
+
+void asteroids_point_zero::draw_Mid_Life()
+{
+    ML->draw();
+}
+
+void asteroids_point_zero::draw_End_Life()
+{
+    EL->draw();
 }
 
 void asteroids_point_zero::draw_medium()
@@ -78,6 +96,46 @@ void asteroids_point_zero::draw_bullets()
         }
     }
 }
+
+void asteroids_point_zero::collision()
+{
+    spaceship->draw();
+    for (auto &a : small_asteroid)
+    {
+        SDL_Rect s1 = spaceship->getMov();
+        SDL_Rect a1 = a->getMov();
+        if (SDL_HasIntersection(&a1, &s1))
+        {
+            a->exploded = true;
+            spaceship->exploded = true;
+        }
+        spaceship->fly();
+    }
+    for (auto &m : medium)
+    {
+        SDL_Rect s1 = spaceship->getMov();
+        SDL_Rect m1 = m->getMov();
+        if (SDL_HasIntersection(&m1, &s1))
+        {
+            m->exploded = true;
+            spaceship->exploded = true;
+        }
+        spaceship->fly();
+    }
+    for (auto &h : hard)
+    {
+        SDL_Rect s1 = spaceship->getMov();
+        SDL_Rect h1 = h->getMov();
+        if (SDL_HasIntersection(&h1, &s1))
+        {
+            h->exploded = true;
+            spaceship->exploded = true;
+        }
+        spaceship->fly();
+    }
+}
+
+// ******************************************************************************
 
 void asteroids_point_zero::create_small_asteroid()
 {

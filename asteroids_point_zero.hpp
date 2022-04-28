@@ -8,6 +8,9 @@
 #include <SDL_ttf.h>
 #include "medium.hpp"
 #include "hard.hpp"
+#include "lives.hpp"
+#include "mid_life.hpp"
+#include "end_life.hpp"
 using namespace std;
 #include <string>
 
@@ -17,6 +20,9 @@ using namespace std;
 class asteroids_point_zero
 {
 private:
+    Lives *Life;
+    Mid_Life *ML;
+    End_Life *EL;
     Spaceship *spaceship;
     vector<Small_Asteroid *> small_asteroid;
     vector<Bullet *> bullets;
@@ -30,9 +36,13 @@ public:
     void draw_bullets();
     void draw_medium();
     void draw_hard();
+    void draw_heart();
+    void draw_Mid_Life();
+    void draw_End_Life();
     void create_small_asteroid();
     void create_medium();
     void create_hard();
     void create_bullets(int x, int y);
     void checkMouseClick(int, int);
+    void collision();
 };

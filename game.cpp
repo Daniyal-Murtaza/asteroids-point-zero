@@ -259,7 +259,8 @@ void Game::run()
 					HardScreen();
 				}
 			}
-			if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_SPACE){
+			if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_SPACE)
+			{
 				if (screen == 2 || screen == 5 || screen == 6)
 				{
 					apz->create_bullets(xMouse, yMouse);
@@ -293,6 +294,10 @@ void Game::run()
 			apz->draw_spaceship();
 			apz->draw_small_asteroid();
 			apz->draw_bullets();
+			apz->collision();
+			apz->draw_heart();
+			apz->draw_Mid_Life();
+			apz->draw_End_Life();
 		}
 		if (screen == 5)
 		{
@@ -300,6 +305,10 @@ void Game::run()
 			apz->draw_spaceship();
 			apz->create_medium();
 			apz->draw_bullets();
+			apz->collision();
+			apz->draw_heart();
+			apz->draw_Mid_Life();
+			apz->draw_End_Life();
 		}
 		if (screen == 6)
 		{
@@ -307,6 +316,10 @@ void Game::run()
 			apz->draw_spaceship();
 			apz->create_hard();
 			apz->draw_bullets();
+			apz->draw_heart();
+			apz->draw_Mid_Life();
+			apz->draw_End_Life();
+			apz->collision();
 		}
 
 		//****************************************************************

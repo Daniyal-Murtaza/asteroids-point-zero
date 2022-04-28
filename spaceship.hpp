@@ -8,6 +8,8 @@ class Spaceship : public Flying_Object
 private:
     SDL_Rect mover, src;
 public:
+    bool exploded = false;
+    bool end = false;
     void fly();
     Spaceship();
     void setMov(int x, int y);
