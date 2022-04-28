@@ -242,10 +242,10 @@ void Game::run()
 				{
 					RulesScreen();
 				}
-				if (screen == 2)
-				{
-					apz->create_bullets(xMouse, yMouse);
-				}
+				// if (screen == 2 || screen == 5 || screen == 6)
+				// {
+				// 	apz->create_bullets(xMouse, yMouse);
+				// }
 				if (xMouse > 75 && xMouse < 193 && yMouse > 236 && yMouse < 264)
 				{
 					BackgroundScreen();
@@ -259,12 +259,18 @@ void Game::run()
 					HardScreen();
 				}
 			}
-			if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_ESCAPE && (screen == 2 || screen == 3))
+			if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_SPACE){
+				if (screen == 2 || screen == 5 || screen == 6)
+				{
+					apz->create_bullets(xMouse, yMouse);
+				}
+			}
+			if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_ESCAPE && (screen == 2 || screen == 3 || screen == 5 || screen == 6))
 			{
 				gTexture = loadTexture("Startingscreen.png");
 				screen = 1;
 			}
-			if (e.type == SDL_MOUSEMOTION && screen == 2)
+			if (e.type == SDL_MOUSEMOTION && screen == 2 || screen == 5 || screen == 6)
 			{
 				SDL_GetMouseState(&xMouse, &yMouse);
 				// cout << xMouse << " " << yMouse;
@@ -290,15 +296,15 @@ void Game::run()
 		}
 		if (screen == 5)
 		{
-			apz->draw_spaceship();
 			apz->draw_medium();
+			apz->draw_spaceship();
 			apz->create_medium();
 			apz->draw_bullets();
 		}
 		if (screen == 6)
 		{
-			apz->draw_spaceship();
 			apz->draw_hard();
+			apz->draw_spaceship();
 			apz->create_hard();
 			apz->draw_bullets();
 		}

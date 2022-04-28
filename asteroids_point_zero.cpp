@@ -23,8 +23,8 @@ void asteroids_point_zero::draw_medium()
 {
     for (auto &m : medium)
     {
-        m.draw();
-        m.fly();
+        m->draw();
+        m->fly();
     }
 }
 
@@ -32,8 +32,8 @@ void asteroids_point_zero::draw_hard()
 {
     for (auto &h : hard)
     {
-        h.draw();
-        h.fly();
+        h->draw();
+        h->fly();
     }
 }
 
@@ -50,6 +50,28 @@ void asteroids_point_zero::draw_bullets()
             if (SDL_HasIntersection(&a1, &b1))
             {
                 a->exploded = true;
+                b->exploded = true;
+            }
+            b->fly();
+        }
+        for (auto &m : medium)
+        {
+            SDL_Rect b1 = b->getMov();
+            SDL_Rect m1 = m->getMov();
+            if (SDL_HasIntersection(&m1, &b1))
+            {
+                m->exploded = true;
+                b->exploded = true;
+            }
+            b->fly();
+        }
+        for (auto &h : hard)
+        {
+            SDL_Rect b1 = b->getMov();
+            SDL_Rect h1 = h->getMov();
+            if (SDL_HasIntersection(&h1, &b1))
+            {
+                h->exploded = true;
                 b->exploded = true;
             }
             b->fly();
@@ -80,7 +102,7 @@ void asteroids_point_zero::create_medium()
     int p = rand() % 10;
     if (p == 1)
     {
-        Medium s1(n);
+        Medium *s1 = new Medium(n);
         medium.push_back(s1);
     }
 }
@@ -91,7 +113,7 @@ void asteroids_point_zero::create_hard()
     int p = rand() % 10;
     if (p == 1)
     {
-        Hard s1(n);
+        Hard *s1 = new Hard(n);
         hard.push_back(s1);
     }
 }

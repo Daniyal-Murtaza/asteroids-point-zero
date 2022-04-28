@@ -20,8 +20,8 @@ private:
     Spaceship *spaceship;
     vector<Small_Asteroid *> small_asteroid;
     vector<Bullet *> bullets;
-    vector<Medium> medium;
-    vector<Hard> hard;
+    vector<Medium *> medium;
+    vector<Hard *> hard;
 
 public:
     asteroids_point_zero();
@@ -31,8 +31,8 @@ public:
     void draw_medium();
     void draw_hard();
     void create_small_asteroid();
-    void create_bullets(int x, int y);
     void create_medium();
     void create_hard();
+    void create_bullets(int x, int y);
     void checkMouseClick(int, int);
 };
