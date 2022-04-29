@@ -321,10 +321,12 @@ void Game::run()
 			if (screen == 5)
 			{
 				apz->draw_medium();
+				apz->draw_tiny();
 				apz->create_ufo();
 				apz->create_bonus();
 				apz->draw_spaceship();
 				apz->create_medium();
+				apz->create_tiny();
 				apz->draw_ufo();
 				apz->draw_bonus();
 				apz->draw_bullets();
@@ -338,9 +340,11 @@ void Game::run()
 				apz->draw_hard();
 				apz->create_ufo();
 				apz->create_bonus();
+				apz->create_tiny();
 				apz->draw_spaceship();
 				apz->create_hard();
 				apz->draw_bullets();
+				apz->draw_tiny();
 				apz->draw_bonus();
 				apz->draw_ufo();
 				apz->draw_heart();

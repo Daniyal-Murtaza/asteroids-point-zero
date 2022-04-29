@@ -31,6 +31,15 @@ void asteroids_point_zero::draw_ufo()
     }
 }
 
+void asteroids_point_zero::draw_tiny()
+{
+    for (auto &t : tiny)
+    {
+        t->draw();
+        t->fly();
+    }
+}
+
 void asteroids_point_zero::draw_bonus()
 {
     for (auto &b : bonus)
@@ -155,6 +164,25 @@ void asteroids_point_zero::draw_bullets()
             }
             b->fly();
         }
+        for (auto &t : tiny)
+        {
+            SDL_Rect b1 = b->getMov();
+            SDL_Rect t1 = t->getMov();
+            if (SDL_HasIntersection(&t1, &b1))
+            {
+                t->exploded = true;
+                b->exploded = true;
+                if (b->exploded)
+                {
+                    b->removeBullet();
+                }
+                if (t->exploded)
+                {
+                    t->removeTiny();
+                }
+            }
+            b->fly();
+        }
     }
 }
 
@@ -245,6 +273,26 @@ void asteroids_point_zero::collision()
         u->draw();
         u->fly();
     }
+    for (auto &t : tiny)
+    {
+        SDL_Rect s1 = spaceship->getMov();
+        SDL_Rect t1 = t->getMov();
+        if (SDL_HasIntersection(&t1, &s1))
+        {
+            t->exploded = true;
+            spaceship->exploded = true;
+            --Life;
+            // cout << Life.n << " ";
+            if (t->exploded)
+            {
+                t->removeTiny();
+            }
+        }
+        if (t->end)
+            t->removeTiny();
+        t->draw();
+        t->fly();
+    }
     for (auto &b : bonus)
     {
         SDL_Rect s1 = spaceship->getMov();
@@ -290,6 +338,17 @@ void asteroids_point_zero::create_ufo()
     {
         UFO *u1 = new UFO(n);
         ufo.push_back(u1);
+    }
+}
+
+void asteroids_point_zero::create_tiny()
+{
+    int n = rand() % 550;
+    int p = rand() % 50;
+    if (p == 1)
+    {
+        Tiny *t1 = new Tiny(n);
+        tiny.push_back(t1);
     }
 }
 
@@ -398,6 +457,15 @@ void asteroids_point_zero::deleteObjects()
             bonus.remove(b);
         }
     }
+    for (auto &t : tiny)
+    {
+        ObjectMov = t->getMov();
+        if (ObjectMov.y > 700)
+        {
+            delete t;
+            tiny.remove(t);
+        }
+    }
 }
 
 asteroids_point_zero::~asteroids_point_zero()
@@ -425,6 +493,10 @@ asteroids_point_zero::~asteroids_point_zero()
     for (auto &b : bonus)
     {
         delete b;
+    }
+    for (auto &t : tiny)
+    {
+        delete t;
     }
     bullets.clear();
 }

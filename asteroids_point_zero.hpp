@@ -11,6 +11,7 @@
 #include "lives.hpp"
 #include "mid_life.hpp"
 #include "end_life.hpp"
+#include "tiny.hpp"
 #include "UFO.hpp"
 using namespace std;
 #include <string>
@@ -34,6 +35,7 @@ private:
     list<Medium *> medium;
     list<Hard *> hard;
     list<Bonus *> bonus;
+    list<Tiny *> tiny;
     char const *num_char;
 
 public:
@@ -42,6 +44,7 @@ public:
     void draw_spaceship();
     void draw_small_asteroid();
     void draw_ufo();
+    void draw_tiny();
     void draw_bullets();
     void draw_medium();
     void draw_hard();
@@ -53,6 +56,7 @@ public:
     // void draw_End_Life();
     void create_small_asteroid();
     void create_ufo();
+    void create_tiny();
     void create_medium();
     void create_bonus();
     void create_hard();
