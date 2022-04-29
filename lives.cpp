@@ -2,7 +2,7 @@
 
 Lives::Lives()
 {
-    srcRect = {133, 97, 80, 59};
+    srcRect = {133, 196, 80, 59};
     moverRect = {100, 15, 30, 30};
 }
 

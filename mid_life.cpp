@@ -2,7 +2,7 @@
 
 Mid_Life::Mid_Life()
 {
-    srcRect = {133, 159, 80, 55};
+    srcRect = {133, 258, 80, 55};
     moverRect = {60, 15, 30, 30};
 }
 

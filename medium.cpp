@@ -1,6 +1,6 @@
 #include "medium.hpp"
 
-Medium::Medium(int x) : Flying_Object({9, 321, 33, 61}, {x, 0, 60, 60}) {}
+Medium::Medium(int x) : Flying_Object({9, 321, 33, 61}, {x, 0, 50, 50}) {}
 
 void Medium::fly()
 {

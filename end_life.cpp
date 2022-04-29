@@ -2,7 +2,7 @@
 
 End_Life::End_Life()
 {
-    srcRect = {133, 44, 80, 49};
+    srcRect = {133, 143, 80, 49};
     moverRect = {20, 15, 30, 30};
 }
 

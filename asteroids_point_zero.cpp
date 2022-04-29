@@ -22,6 +22,15 @@ void asteroids_point_zero::draw_small_asteroid()
     }
 }
 
+void asteroids_point_zero::draw_ufo()
+{
+    for (auto &u : ufo)
+    {
+        u->draw();
+        u->fly();
+    }
+}
+
 void asteroids_point_zero::draw_heart()
 {
     Life->draw();
@@ -94,6 +103,17 @@ void asteroids_point_zero::draw_bullets()
             }
             b->fly();
         }
+        for (auto &u : ufo)
+        {
+            SDL_Rect b1 = b->getMov();
+            SDL_Rect u1 = u->getMov();
+            if (SDL_HasIntersection(&u1, &b1))
+            {
+                u->exploded = true;
+                b->exploded = true;
+            }
+            b->fly();
+        }
     }
 }
 
@@ -133,6 +153,17 @@ void asteroids_point_zero::collision()
         }
         spaceship->fly();
     }
+    for (auto &u : ufo)
+    {
+        SDL_Rect s1 = spaceship->getMov();
+        SDL_Rect u1 = u->getMov();
+        if (SDL_HasIntersection(&u1, &s1))
+        {
+            u->exploded = true;
+            spaceship->exploded = true;
+        }
+        spaceship->fly();
+    }
 }
 
 // ******************************************************************************
@@ -145,6 +176,17 @@ void asteroids_point_zero::create_small_asteroid()
     {
         Small_Asteroid *s1 = new Small_Asteroid(n);
         small_asteroid.push_back(s1);
+    }
+}
+
+void asteroids_point_zero::create_ufo()
+{
+    int n = rand() % 550;
+    int p = rand() % 40;
+    if (p == 1)
+    {
+        UFO *u1 = new UFO(n);
+        ufo.push_back(u1);
     }
 }
 

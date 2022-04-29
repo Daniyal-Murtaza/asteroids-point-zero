@@ -1,12 +1,13 @@
 #include "bullet.hpp"
 
-Bullet::Bullet(int x, int y) : Flying_Object({1074, 317, 27, 13}, {x, y, 20, 20}) {}
+Bullet::Bullet(int x, int y) : Flying_Object({1059, 313, 25, 14}, {x, y, 15, 35}) {}
 
 void Bullet::fly()
 {
 
     // Sprite will flap it wings
-    if (exploded){
+    if (exploded)
+    {
         switch (frame)
         {
         case 0:
@@ -30,17 +31,18 @@ void Bullet::fly()
             frame = 5;
             break;
         case 5:
-            srcRect = {682,748,154,165};
+            srcRect = {682, 748, 154, 165};
             frame = 6;
             break;
         case 6:
-            srcRect = {848,748,154,165};
+            srcRect = {848, 748, 154, 165};
             // frame = 7;
             end = true;
             break;
         }
     }
-    else{
+    else
+    {
         moverRect.y -= 5;
     }
 }

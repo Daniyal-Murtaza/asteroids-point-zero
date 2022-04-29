@@ -1,50 +1,36 @@
-#include "small_asteroid.hpp"
+#include "UFO.hpp"
 
-Small_Asteroid::Small_Asteroid(int x) : Flying_Object({11, 422, 33, 61}, {x, 0, 40, 40}) {}
+UFO::UFO(int x) : Flying_Object({13, 10, 72, 72}, {x, 0, 30, 30}) {}
 
-void Small_Asteroid::fly()
+void UFO::fly()
 {
-
-    // Sprite will flap it wings
     if (!exploded)
     {
         switch (frame)
         {
         case 0:
-            srcRect = {11, 422, 33, 61};
+            srcRect = {9, 321, 33, 61};
             frame = 1;
             break;
         case 1:
-            srcRect = {61, 423, 33, 61};
+            srcRect = {105, 9, 80, 77};
             frame = 2;
             break;
         case 2:
-            srcRect = {112, 427, 32, 56};
+            srcRect = {198, 6, 86, 84};
             frame = 3;
             break;
         case 3:
-            srcRect = {163, 428, 33, 51};
+            srcRect = {386, 4, 94, 90};
             frame = 4;
             break;
         case 4:
-            srcRect = {214, 429, 33, 48};
+            srcRect = {482, 4, 94, 90};
             frame = 5;
             break;
         case 5:
-            srcRect = {265, 429, 33, 48};
+            srcRect = {578, 4, 94, 90};
             frame = 6;
-            break;
-        case 6:
-            srcRect = {316, 429, 34, 48};
-            frame = 7;
-            break;
-        case 7:
-            srcRect = {365, 428, 37, 49};
-            frame = 8;
-            break;
-        case 8:
-            srcRect = {413, 427, 39, 51};
-            frame = 0;
             break;
         }
         moverRect.y += 7;
