@@ -15,6 +15,7 @@
 using namespace std;
 #include <string>
 #include <list>
+#include "Bonus.hpp"
 
 using namespace std;
 #pragma once
@@ -25,12 +26,15 @@ private:
     // Lives *Life;
     // Mid_Life *ML;
     // End_Life *EL;
+    int score = 0;
     Spaceship *spaceship;
     list<Small_Asteroid *> small_asteroid;
     list<UFO *> ufo;
     list<Bullet *> bullets;
     list<Medium *> medium;
     list<Hard *> hard;
+    list<Bonus *> bonus;
+    char const *num_char;
 
 public:
     Lives Life;
@@ -42,11 +46,15 @@ public:
     void draw_medium();
     void draw_hard();
     void draw_heart();
+    void draw_bonus();
+    void display_score();
+    int get_score();
     // void draw_Mid_Life();
     // void draw_End_Life();
     void create_small_asteroid();
     void create_ufo();
     void create_medium();
+    void create_bonus();
     void create_hard();
     void create_bullets(int x, int y);
     void checkMouseClick(int, int);

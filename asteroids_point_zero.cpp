@@ -31,6 +31,15 @@ void asteroids_point_zero::draw_ufo()
     }
 }
 
+void asteroids_point_zero::draw_bonus()
+{
+    for (auto &b : bonus)
+    {
+        b->draw();
+        b->fly();
+    }
+}
+
 void asteroids_point_zero::draw_heart()
 {
     Life.draw();
@@ -162,7 +171,7 @@ void asteroids_point_zero::collision()
             a->exploded = true;
             spaceship->exploded = true;
             --Life;
-            cout << Life.n << " ";
+            // cout << Life.n << " ";
             if (a->exploded)
             {
                 a->removeSmall_Asteroid();
@@ -183,7 +192,7 @@ void asteroids_point_zero::collision()
             m->exploded = true;
             spaceship->exploded = true;
             --Life;
-            cout << Life.n << " ";
+            // cout << Life.n << " ";
             if (m->exploded)
             {
                 m->removeMedium();
@@ -204,7 +213,7 @@ void asteroids_point_zero::collision()
             h->exploded = true;
             spaceship->exploded = true;
             --Life;
-            cout << Life.n << " ";
+            // cout << Life.n << " ";
             if (h->exploded)
             {
                 h->removeHard();
@@ -225,7 +234,7 @@ void asteroids_point_zero::collision()
             u->exploded = true;
             spaceship->exploded = true;
             --Life;
-            cout << Life.n << " ";
+            // cout << Life.n << " ";
             if (u->exploded)
             {
                 u->remove_UFO();
@@ -236,70 +245,29 @@ void asteroids_point_zero::collision()
         u->draw();
         u->fly();
     }
+    for (auto &b : bonus)
+    {
+        SDL_Rect s1 = spaceship->getMov();
+        SDL_Rect b1 = b->getMov();
+        if (SDL_HasIntersection(&b1, &s1))
+        {
+            b->exploded = true;
+            spaceship->exploded = true;
+            if (b->exploded)
+            {
+                b->remove_Bonus();
+                score += 10;
+                cout << "Score: " << score << endl;
+            }
+        }
+        if (b->end)
+        {
+            b->remove_Bonus();
+        }
+        b->draw();
+        b->fly();
+    }
 }
-
-// void asteroids_point_zero::collision()
-// {
-//     spaceship->draw();
-//     for (auto &a : small_asteroid)
-//     {
-//         SDL_Rect s1 = spaceship->getMov();
-//         SDL_Rect a1 = a->getMov();
-//         // if(a->end){
-//         //     delete a;
-//         // }
-//         if (SDL_HasIntersection(&a1, &s1))
-//         {
-//             a->exploded = true;
-//             spaceship->exploded = true;
-//         }
-//         spaceship->fly();
-//     }
-//     for (auto &m : medium)
-//     {
-//         SDL_Rect s1 = spaceship->getMov();
-//         SDL_Rect m1 = m->getMov();
-//         // if(m->end){
-//         //     delete m;
-//         // }
-//         if (SDL_HasIntersection(&m1, &s1))
-//         {
-//             m->exploded = true;
-//             spaceship->exploded = true;
-//         }
-//         spaceship->fly();
-//     }
-//     for (auto &h : hard)
-//     {
-//         SDL_Rect s1 = spaceship->getMov();
-//         SDL_Rect h1 = h->getMov();
-//         // if (h->end){
-//         //     delete h;
-
-//         // }
-//         if (SDL_HasIntersection(&h1, &s1))
-//         {
-//             h->exploded = true;
-//             spaceship->exploded = true;
-//         }
-//         spaceship->fly();
-//     }
-//     for (auto &u : ufo)
-//     {
-//         SDL_Rect s1 = spaceship->getMov();
-//         SDL_Rect u1 = u->getMov();
-//         // if(u->end){
-//         //     delete u;
-//         // }
-//         if (SDL_HasIntersection(&u1, &s1))
-//         {
-//             u->exploded = true;
-//             spaceship->exploded = true;
-
-//         }
-//         spaceship->fly();
-//     }
-// }
 
 // ******************************************************************************
 
@@ -322,6 +290,17 @@ void asteroids_point_zero::create_ufo()
     {
         UFO *u1 = new UFO(n);
         ufo.push_back(u1);
+    }
+}
+
+void asteroids_point_zero::create_bonus()
+{
+    int n = rand() % 550;
+    int p = rand() % 60;
+    if (p == 1)
+    {
+        Bonus *b1 = new Bonus(n);
+        bonus.push_back(b1);
     }
 }
 
@@ -410,6 +389,15 @@ void asteroids_point_zero::deleteObjects()
             ufo.remove(u);
         }
     }
+    for (auto &b : bonus)
+    {
+        ObjectMov = b->getMov();
+        if (ObjectMov.y > 700)
+        {
+            delete b;
+            bonus.remove(b);
+        }
+    }
 }
 
 asteroids_point_zero::~asteroids_point_zero()
@@ -434,5 +422,38 @@ asteroids_point_zero::~asteroids_point_zero()
     {
         delete u;
     }
+    for (auto &b : bonus)
+    {
+        delete b;
+    }
     bullets.clear();
+}
+
+void asteroids_point_zero::display_score()
+{
+    TTF_Init();
+    // this opens a font style and sets a size
+    TTF_Font *font = TTF_OpenFont("arial.ttf", 24);
+
+    SDL_Color White = {255, 255, 255};
+    string tmp = to_string(score);
+    num_char = tmp.c_str();
+
+    SDL_Surface *surfaceMessage =
+        TTF_RenderText_Solid(font, num_char, White);
+
+    // now you can convert it into a texture
+    SDL_Texture *Message = SDL_CreateTextureFromSurface(Drawing::gRenderer, surfaceMessage);
+
+    SDL_Rect Message_rect; // create a rect
+    Message_rect.x = 350;  // controls the rect's x coordinate
+    Message_rect.y = 200;  // controls the rect's y coordinte
+    Message_rect.w = 70;   // controls the width of the rect
+    Message_rect.h = 70;   // controls the height of the rect
+
+    SDL_RenderCopy(Drawing::gRenderer, Message, NULL, &Message_rect);
+    SDL_FreeSurface(surfaceMessage);
+    SDL_DestroyTexture(Message);
+    TTF_CloseFont(font);
+    TTF_Quit();
 }

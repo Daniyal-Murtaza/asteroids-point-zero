@@ -13,27 +13,27 @@ void Bonus::fly()
             frame = 1;
             break;
         case 1:
-            srcRect = {105, 9, 80, 77};
+            srcRect = {430, 494, 142, 112};
             frame = 2;
             break;
         case 2:
-            srcRect = {198, 6, 86, 84};
+            srcRect = {603, 496, 77, 112};
             frame = 3;
             break;
         case 3:
-            srcRect = {386, 4, 94, 90};
+            srcRect = {326, 628, 25, 113};
             frame = 4;
             break;
         case 4:
-            srcRect = {482, 4, 94, 90};
+            srcRect = {430, 629, 77, 113};
             frame = 5;
             break;
         case 5:
-            srcRect = {578, 4, 94, 90};
-            frame = 6;
+            srcRect = {546, 628, 142, 112};
+            frame = 0;
             break;
         }
-        moverRect.y += 10;
+        moverRect.y += 15;
     }
     else
     {
