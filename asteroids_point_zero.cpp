@@ -174,6 +174,48 @@ void asteroids_point_zero::collision()
         a->fly();
     }
 
+    for (auto &m : medium)
+    {
+        SDL_Rect s1 = spaceship->getMov();
+        SDL_Rect m1 = m->getMov();
+        if (SDL_HasIntersection(&m1, &s1))
+        {
+            m->exploded = true;
+            spaceship->exploded = true;
+            --Life;
+            cout << Life.n << " ";
+            if (m->exploded)
+            {
+                m->removeMedium();
+            }
+        }
+        if (m->end)
+            m->removeMedium();
+        m->draw();
+        m->fly();
+    }
+
+    for (auto &h : hard)
+    {
+        SDL_Rect s1 = spaceship->getMov();
+        SDL_Rect h1 = h->getMov();
+        if (SDL_HasIntersection(&h1, &s1))
+        {
+            h->exploded = true;
+            spaceship->exploded = true;
+            --Life;
+            cout << Life.n << " ";
+            if (h->exploded)
+            {
+                h->removeHard();
+            }
+        }
+        if (h->end)
+            h->removeHard();
+        h->draw();
+        h->fly();
+    }
+
     for (auto &u : ufo)
     {
         SDL_Rect s1 = spaceship->getMov();
