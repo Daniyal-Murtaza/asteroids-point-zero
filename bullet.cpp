@@ -43,8 +43,13 @@ void Bullet::fly()
     }
     else
     {
-        moverRect.y -= 5;
+        moverRect.y -= 2;
     }
+}
+
+void Bullet::removeBullet()
+{
+    moverRect = {0, 0, 0, 0};
 }
 
 // SDL_Rect* Bullet::getMov(){

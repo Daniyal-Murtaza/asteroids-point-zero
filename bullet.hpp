@@ -12,4 +12,5 @@ public:
     void fly();
     Bullet(int, int);
     // SDL_Rect* getMov();
+    void removeBullet();
 };

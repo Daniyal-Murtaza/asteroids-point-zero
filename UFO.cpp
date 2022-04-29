@@ -33,7 +33,7 @@ void UFO::fly()
             frame = 6;
             break;
         }
-        moverRect.y += 7;
+        moverRect.y += 10;
     }
     else
     {
@@ -70,4 +70,9 @@ void UFO::fly()
             break;
         }
     }
+}
+
+void UFO::remove_UFO()
+{
+    moverRect = {0, 0, 0, 0};
 }

@@ -85,3 +85,8 @@ void Medium::fly()
         }
     }
 }
+
+void Medium::removeMedium()
+{
+    moverRect = {0, 0, 0, 0};
+}

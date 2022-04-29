@@ -85,3 +85,8 @@ void Hard::fly()
         }
     }
 }
+
+void Hard::removeHard()
+{
+    moverRect = {0, 0, 0, 0};
+}

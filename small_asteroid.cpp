@@ -85,3 +85,8 @@ void Small_Asteroid::fly()
         }
     }
 }
+
+void Small_Asteroid::removeSmall_Asteroid()
+{
+    moverRect = {0, 0, 0, 0};
+}

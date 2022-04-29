@@ -11,6 +11,8 @@ protected:
     SDL_Rect moverRect;
 
 public:
+    int n = 3;
     Lives();
     void draw();
+    void operator--();
 };

@@ -12,5 +12,5 @@ public:
     bool end = false;
     void fly();
     Spaceship();
-    void setMov(int x, int y);
+    void setMov(int x,int y);
 };

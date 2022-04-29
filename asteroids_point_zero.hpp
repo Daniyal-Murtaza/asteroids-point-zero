@@ -14,6 +14,7 @@
 #include "UFO.hpp"
 using namespace std;
 #include <string>
+#include <list>
 
 using namespace std;
 #pragma once
@@ -21,17 +22,18 @@ using namespace std;
 class asteroids_point_zero
 {
 private:
-    Lives *Life;
-    Mid_Life *ML;
-    End_Life *EL;
+    // Lives *Life;
+    // Mid_Life *ML;
+    // End_Life *EL;
     Spaceship *spaceship;
-    vector<Small_Asteroid *> small_asteroid;
-    vector<UFO *> ufo;
-    vector<Bullet *> bullets;
-    vector<Medium *> medium;
-    vector<Hard *> hard;
+    list<Small_Asteroid *> small_asteroid;
+    list<UFO *> ufo;
+    list<Bullet *> bullets;
+    list<Medium *> medium;
+    list<Hard *> hard;
 
 public:
+    Lives Life;
     asteroids_point_zero();
     void draw_spaceship();
     void draw_small_asteroid();
@@ -40,8 +42,8 @@ public:
     void draw_medium();
     void draw_hard();
     void draw_heart();
-    void draw_Mid_Life();
-    void draw_End_Life();
+    // void draw_Mid_Life();
+    // void draw_End_Life();
     void create_small_asteroid();
     void create_ufo();
     void create_medium();
@@ -49,4 +51,6 @@ public:
     void create_bullets(int x, int y);
     void checkMouseClick(int, int);
     void collision();
+    void deleteObjects();
+    ~asteroids_point_zero();
 };

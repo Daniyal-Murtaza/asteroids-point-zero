@@ -34,5 +34,6 @@ public:
     bool RulesScreen();
     bool MediumScreen();
     bool HardScreen();
+    bool EndScreen();
     bool LevelsScreen();
 };

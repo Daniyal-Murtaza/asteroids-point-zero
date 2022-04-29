@@ -164,6 +164,20 @@ bool Game::HardScreen()
 	return success;
 }
 
+bool Game::EndScreen()
+{
+	// Loading success flag
+	bool success = true;
+	screen = 7;
+	gTexture = loadTexture("end.png");
+	if (gTexture == NULL)
+	{
+		printf("Unable to run due to error: %s\n", SDL_GetError());
+		success = false;
+	}
+	return success;
+}
+
 void Game::close()
 {
 	// Free loaded images
@@ -287,47 +301,52 @@ void Game::run()
 		SDL_RenderClear(Drawing::gRenderer);					  // removes everything from renderer
 		SDL_RenderCopy(Drawing::gRenderer, gTexture, NULL, NULL); // Draws background to renderer
 		//***********************draw the objects here********************
-
-		if (screen == 2)
+		if (apz->Life.n > 0)
 		{
-			apz->create_small_asteroid();
-			apz->create_ufo();
-			apz->draw_spaceship();
-			apz->draw_small_asteroid();
-			apz->draw_ufo();
-			apz->draw_bullets();
-			apz->collision();
-			apz->draw_heart();
-			apz->draw_Mid_Life();
-			apz->draw_End_Life();
+			if (screen == 2)
+			{
+				apz->create_small_asteroid();
+				apz->create_ufo();
+				apz->draw_spaceship();
+				apz->draw_small_asteroid();
+				apz->draw_ufo();
+				apz->draw_bullets();
+				apz->collision();
+				apz->draw_heart();
+				// apz->draw_Mid_Life();
+				// apz->draw_End_Life();
+			}
+			if (screen == 5)
+			{
+				apz->draw_medium();
+				apz->create_ufo();
+				apz->draw_spaceship();
+				apz->create_medium();
+				apz->draw_ufo();
+				apz->draw_bullets();
+				apz->collision();
+				apz->draw_heart();
+				// apz->draw_Mid_Life();
+				// apz->draw_End_Life();
+			}
+			if (screen == 6)
+			{
+				apz->draw_hard();
+				apz->create_ufo();
+				apz->draw_spaceship();
+				apz->create_hard();
+				apz->draw_bullets();
+				apz->draw_ufo();
+				apz->draw_heart();
+				// apz->draw_Mid_Life();
+				// apz->draw_End_Life();
+				apz->collision();
+			}
 		}
-		if (screen == 5)
+		else
 		{
-			apz->draw_medium();
-			apz->create_ufo();
-			apz->draw_spaceship();
-			apz->create_medium();
-			apz->draw_ufo();
-			apz->draw_bullets();
-			apz->collision();
-			apz->draw_heart();
-			apz->draw_Mid_Life();
-			apz->draw_End_Life();
+			EndScreen();
 		}
-		if (screen == 6)
-		{
-			apz->draw_hard();
-			apz->create_ufo();
-			apz->draw_spaceship();
-			apz->create_hard();
-			apz->draw_bullets();
-			apz->draw_ufo();
-			apz->draw_heart();
-			apz->draw_Mid_Life();
-			apz->draw_End_Life();
-			apz->collision();
-		}
-
 		//****************************************************************
 		SDL_RenderPresent(Drawing::gRenderer); // displays the updated renderer
 

@@ -12,4 +12,5 @@ public:
     bool exploded = false;
     void fly();
     Hard(int);
+    void removeHard();
 };

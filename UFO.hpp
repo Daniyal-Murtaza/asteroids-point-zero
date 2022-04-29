@@ -12,4 +12,5 @@ public:
     bool exploded = false;
     void fly();
     UFO(int);
+    void remove_UFO();
 };

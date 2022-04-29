@@ -12,4 +12,5 @@ public:
     bool exploded = false;
     void fly();
     Small_Asteroid(int);
+    void removeSmall_Asteroid();
 };
