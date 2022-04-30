@@ -256,10 +256,6 @@ void Game::run()
 				{
 					RulesScreen();
 				}
-				// if (screen == 2 || screen == 5 || screen == 6)
-				// {
-				// 	apz->create_bullets(xMouse, yMouse);
-				// }
 				if (xMouse > 75 && xMouse < 193 && yMouse > 236 && yMouse < 264)
 				{
 					BackgroundScreen();
@@ -271,6 +267,10 @@ void Game::run()
 				if (xMouse > 429 && xMouse < 549 && yMouse > 236 && yMouse < 263)
 				{
 					HardScreen();
+				}
+				if ((xMouse >= 258 && xMouse <= 347 && yMouse >= 480 && yMouse <= 503))
+				{
+					quit = true;
 				}
 			}
 			if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_SPACE)

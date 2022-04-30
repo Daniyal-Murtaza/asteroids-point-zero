@@ -538,7 +538,7 @@ void asteroids_point_zero::deleteObjects()
     for (auto &f : fire)
     {
         ObjectMov = f->getMov();
-        if (ObjectMov.x > 550)
+        if (ObjectMov.y > 700)
         {
             delete f;
             fire.remove(f);

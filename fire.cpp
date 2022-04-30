@@ -1,6 +1,6 @@
 #include "fire.hpp"
 
-Fire::Fire(int x) : Flying_Object({41, 880, 92, 95}, {0, x, 60, 60}) {}
+Fire::Fire(int x) : Flying_Object({41, 880, 92, 95}, {x, x, 50, 50}) {}
 
 void Fire::fly()
 {
@@ -30,7 +30,7 @@ void Fire::fly()
             srcRect = {683, 848, 154, 165};
             frame = 0;
             break;
-            moverRect.x += 4;
+            moverRect.y += 2;
         }
         // else
         // {
