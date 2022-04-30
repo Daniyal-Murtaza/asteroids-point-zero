@@ -1,11 +1,14 @@
 #include "UFO.hpp"
 
+//  Inheriting from flying_object class
 UFO::UFO(int x) : Flying_Object({13, 10, 72, 72}, {0, x, 30, 30}) {}
 
+// Polymorphism from flying_object class
 void UFO::fly()
 {
     if (!exploded)
     {
+        // flying animation
         switch (frame)
         {
         case 0:
@@ -39,6 +42,7 @@ void UFO::fly()
     }
     else
     {
+        // explosion animation
         switch (frame)
         {
         case 0:
@@ -74,7 +78,8 @@ void UFO::fly()
     }
 }
 
-void UFO::remove_UFO()
+// deleing memory
+void UFO::remove_UFO() //removing bullets
 {
     moverRect = {0, 0, 0, 0};
 }

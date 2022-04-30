@@ -86,7 +86,7 @@ void Small_Asteroid::fly()
     }
 }
 
-void Small_Asteroid::removeSmall_Asteroid()
+void Small_Asteroid::removeSmall_Asteroid() //removing bullets
 {
     moverRect = {0, 0, 0, 0};
 }

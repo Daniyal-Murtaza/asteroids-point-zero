@@ -4,7 +4,7 @@ class Score{
 private:
     int S;
 public:
-    Score(int);
-    void ScoreUpdate();
-    int getScore();
+    Score(int); //score constructor
+    void ScoreUpdate(); //scoreupdated
+    int getScore(); 
 }; 

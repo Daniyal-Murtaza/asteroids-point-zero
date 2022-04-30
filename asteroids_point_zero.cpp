@@ -377,86 +377,86 @@ void asteroids_point_zero::collision() // function collision
 
 // ******************************************************************************
 
-void asteroids_point_zero::create_small_asteroid()
+void asteroids_point_zero::create_small_asteroid() //creating objects randomly 
 {
     int n = rand() % 550;
-    int p = rand() % 20;
+    int p = rand() % 20; //probability of generation
     if (p == 1)
     {
-        Small_Asteroid *s1 = new Small_Asteroid(n);
-        small_asteroid.push_back(s1);
+        Small_Asteroid *s1 = new Small_Asteroid(n); //dynamically creating objects
+        small_asteroid.push_back(s1); //pushing back objects
     }
 }
 
 void asteroids_point_zero::create_ufo()
 {
     int n = rand() % 550;
-    int p = rand() % 30;
+    int p = rand() % 30; //probability of generation
     if (p == 1)
     {
-        UFO *u1 = new UFO(n);
-        ufo.push_back(u1);
+        UFO *u1 = new UFO(n); //dynamically creating objects
+        ufo.push_back(u1); //pushing back objects
     }
 }
 
 void asteroids_point_zero::create_tiny()
 {
     int n = rand() % 550;
-    int p = rand() % 50;
+    int p = rand() % 50; //probability of generation
     if (p == 1)
     {
-        Tiny *t1 = new Tiny(n);
-        tiny.push_back(t1);
+        Tiny *t1 = new Tiny(n); //dynamically creating objects
+        tiny.push_back(t1); //pushing back objects
     }
 }
 
 void asteroids_point_zero::create_bonus()
 {
     int n = rand() % 550;
-    int p = rand() % 60;
+    int p = rand() % 60; //probability of generation
     if (p == 1)
     {
-        Bonus *b1 = new Bonus(n);
-        bonus.push_back(b1);
+        Bonus *b1 = new Bonus(n); //dynamically creating objects
+        bonus.push_back(b1);//pushing back objects
     }
 }
 
 void asteroids_point_zero::create_fire()
 {
     int n = rand() % 550;
-    int p = rand() % 60;
+    int p = rand() % 60; //probability of generation
     if (p == 1)
     {
-        Fire *f1 = new Fire(n);
-        fire.push_back(f1);
+        Fire *f1 = new Fire(n); //dynamically creating objects
+        fire.push_back(f1); //pushing back objects
     }
 }
 
 void asteroids_point_zero::create_bullets(int x, int y)
 {
-    Bullet *b1 = new Bullet(x, y);
-    bullets.push_back(b1);
+    Bullet *b1 = new Bullet(x, y); //dynamically creating objects
+    bullets.push_back(b1);  //pushing back objects
 }
 
 void asteroids_point_zero::create_medium()
 {
     int n = rand() % 550;
-    int p = rand() % 15;
+    int p = rand() % 15; //probability of generation
     if (p == 1)
     {
-        Medium *s1 = new Medium(n);
-        medium.push_back(s1);
+        Medium *s1 = new Medium(n); //dynamically creating objects
+        medium.push_back(s1); //pushing back objects
     }
 }
 
 void asteroids_point_zero::create_hard()
 {
     int n = rand() % 550;
-    int p = rand() % 10;
+    int p = rand() % 10; //probability of generation
     if (p == 1)
     {
-        Hard *s1 = new Hard(n);
-        hard.push_back(s1);
+        Hard *s1 = new Hard(n); //dynamically creating objects
+        hard.push_back(s1); //pushing back objects
     }
 }
 
@@ -467,10 +467,10 @@ void asteroids_point_zero::checkMouseClick(int x, int y)
 
 // *************************************************************************************
 
-void asteroids_point_zero::deleteObjects()
+void asteroids_point_zero::deleteObjects() //deleting objects here 
 {
     SDL_Rect ObjectMov;
-    for (auto &b : bullets)
+    for (auto &b : bullets) //removing objects
     {
         ObjectMov = b->getMov();
         if (ObjectMov.y < 0)
@@ -480,7 +480,7 @@ void asteroids_point_zero::deleteObjects()
             // cout << "bullet removed";
         }
     }
-    for (auto &a : small_asteroid)
+    for (auto &a : small_asteroid) //removing objects
     {
         ObjectMov = a->getMov();
         if (ObjectMov.y > 700)
@@ -490,95 +490,95 @@ void asteroids_point_zero::deleteObjects()
             // cout << "small asteroid removed";
         }
     }
-    for (auto &m : medium)
+    for (auto &m : medium) //removing objects
     {
         ObjectMov = m->getMov();
         if (ObjectMov.y > 700)
         {
             delete m;
-            medium.remove(m);
+            medium.remove(m); //removing object from list
         }
     }
-    for (auto &h : hard)
+    for (auto &h : hard) //removing objects
     {
         ObjectMov = h->getMov();
         if (ObjectMov.y > 700)
         {
             delete h;
-            hard.remove(h);
+            hard.remove(h); //removing object from list
         }
     }
-    for (auto &u : ufo)
+    for (auto &u : ufo) //removing objects
     {
         ObjectMov = u->getMov();
         if (ObjectMov.y > 700)
         {
             delete u;
-            ufo.remove(u);
+            ufo.remove(u); //removing object from list
         }
-    }
-    for (auto &b : bonus)
+    } 
+    for (auto &b : bonus) //removing objects
     {
         ObjectMov = b->getMov();
         if (ObjectMov.y > 700)
         {
             delete b;
-            bonus.remove(b);
+            bonus.remove(b); //removing object from list
         }
     }
-    for (auto &t : tiny)
+    for (auto &t : tiny) //removing objects
     {
         ObjectMov = t->getMov();
         if (ObjectMov.y > 700)
         {
             delete t;
-            tiny.remove(t);
+            tiny.remove(t); //removing object from list
         }
     }
-    for (auto &f : fire)
+    for (auto &f : fire) //removing objects
     {
         ObjectMov = f->getMov();
         if (ObjectMov.y > 700)
         {
             delete f;
-            fire.remove(f);
+            fire.remove(f); //removing object from list
         }
     }
 }
 
 asteroids_point_zero::~asteroids_point_zero()
 {
-    for (auto &b : bullets)
+    for (auto &b : bullets) //deleting objects here
     {
-        delete b;
+        delete b; //deleted
     }
-    for (auto &a : small_asteroid)
-    {
-        delete a;
+    for (auto &a : small_asteroid)//deleting objects here
+    { 
+        delete a; //deleted
     }
-    for (auto &m : medium)
+    for (auto &m : medium)//deleting objects here
     {
-        delete m;
+        delete m; //deleted
     }
-    for (auto &h : hard)
+    for (auto &h : hard)//deleting objects here
     {
-        delete h;
+        delete h; //deleted
     }
-    for (auto &u : ufo)
+    for (auto &u : ufo)//deleting objects here
     {
-        delete u;
+        delete u; //deleted
     }
-    for (auto &b : bonus)
+    for (auto &b : bonus)//deleting objects here
     {
-        delete b;
+        delete b; //deleted
     }
-    for (auto &t : tiny)
+    for (auto &t : tiny)//deleting objects here
     {
-        delete t;
+        delete t; //deleted
     }
-    for (auto &f : fire)
+    for (auto &f : fire)//deleting objects here
     {
-        delete f;
+        delete f; //deleted
     }
     bullets.clear();
 }

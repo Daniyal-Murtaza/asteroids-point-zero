@@ -1,11 +1,12 @@
 #include "medium.hpp"
 
+// Inheriting
 Medium::Medium(int x) : Flying_Object({9, 321, 33, 61}, {x, 0, 50, 50}) {}
 
+// polymorphism
 void Medium::fly()
 {
-
-    // Sprite will flap it wings
+    // flying animation
     if (!exploded)
     {
         switch (frame)
@@ -47,10 +48,12 @@ void Medium::fly()
             frame = 0;
             break;
         }
+        //  speed controller
         moverRect.y += 8;
     }
     else
     {
+        // explosion animation
         switch (frame)
         {
         case 0:
@@ -86,7 +89,8 @@ void Medium::fly()
     }
 }
 
-void Medium::removeMedium()
+// deleting
+void Medium::removeMedium() // removing bullets
 {
     moverRect = {0, 0, 0, 0};
 }

@@ -1,11 +1,12 @@
 #include "tiny.hpp"
 
+//  Inheriting from flying_object class
 Tiny::Tiny(int x) : Flying_Object({165, 360, 26, 23}, {x, 0, 70, 70}) {}
 
+// Polymorphism from flying_object class
 void Tiny::fly()
 {
-
-    // Sprite will flap it wings
+    // flying animation
     if (!exploded)
     {
         switch (frame)
@@ -47,11 +48,13 @@ void Tiny::fly()
             frame = 0;
             break;
         }
+        // controlling speed
         moverRect.y += 7;
         moverRect.x += -1;
     }
     else
     {
+        // explosion animation
         switch (frame)
         {
         case 0:
@@ -87,7 +90,7 @@ void Tiny::fly()
     }
 }
 
-void Tiny::removeTiny()
+void Tiny::removeTiny() // removing bullets
 {
     moverRect = {0, 0, 0, 0};
 }

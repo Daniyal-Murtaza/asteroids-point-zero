@@ -6,36 +6,36 @@ void Bullet::fly()
 {
 
     // Sprite will flap it wings
-    if (exploded)
+    if (exploded) //frames 
     {
         switch (frame)
         {
         case 0:
-            srcRect = {9, 321, 33, 61};
+            srcRect = {9, 321, 33, 61}; //coordinates with the respective frame 
             frame = 1;
             break;
         case 1:
-            srcRect = {40, 780, 92, 95};
+            srcRect = {40, 780, 92, 95}; //coordinates with the respective frame 
             frame = 2;
             break;
         case 2:
-            srcRect = {190, 759, 133, 141};
+            srcRect = {190, 759, 133, 141}; //coordinates with the respective frame 
             frame = 3;
             break;
         case 3:
-            srcRect = {340, 748, 162, 165};
+            srcRect = {340, 748, 162, 165}; //coordinates with the respective frame 
             frame = 4;
             break;
         case 4:
-            srcRect = {507, 748, 162, 165};
+            srcRect = {507, 748, 162, 165}; //coordinates with the respective frame 
             frame = 5;
             break;
         case 5:
-            srcRect = {682, 748, 154, 165};
+            srcRect = {682, 748, 154, 165}; //coordinates with the respective frame 
             frame = 6;
             break;
         case 6:
-            srcRect = {848, 748, 154, 165};
+            srcRect = {848, 748, 154, 165}; //coordinates with the respective frame 
             // frame = 7;
             end = true;
             break;
@@ -47,7 +47,7 @@ void Bullet::fly()
     }
 }
 
-void Bullet::removeBullet()
+void Bullet::removeBullet() //removing bullets
 {
     moverRect = {0, 0, 0, 0};
 }

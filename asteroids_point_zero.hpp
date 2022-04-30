@@ -28,6 +28,7 @@ private:
     // Lives *Life;
     // Mid_Life *ML;
     // End_Life *EL;
+    //attributions of the asteroid point zero class
     int score = 0;
     Spaceship *spaceship;
     list<Small_Asteroid *> small_asteroid;
@@ -41,6 +42,7 @@ private:
     char const *num_char;
 
 public:
+    //functions of the asteroid point zero class
     Lives Life;
     asteroids_point_zero();
     void draw_spaceship();

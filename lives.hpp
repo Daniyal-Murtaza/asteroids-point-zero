@@ -7,12 +7,12 @@ using namespace std;
 class Lives
 {
 protected:
-    SDL_Rect srcRect;
+    SDL_Rect srcRect; //srcRect and moverRect 
     SDL_Rect moverRect;
 
 public:
-    int n = 3;
+    int n = 3; //we have a total of 3 lifes
     Lives();
-    void draw();
-    void operator--();
+    void draw(); //draw function
+    void operator--(); //operator overloading
 };

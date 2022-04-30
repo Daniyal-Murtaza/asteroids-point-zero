@@ -280,7 +280,7 @@ void Game::run()
 					apz->create_bullets(xMouse + 28, yMouse);
 				}
 			}
-			if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_ESCAPE && (screen == 2 || screen == 3 || screen == 5 || screen == 6))
+			if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_ESCAPE && (screen == 2 || screen == 3 || screen == 4 || screen == 5 || screen == 6))
 			{
 				gTexture = loadTexture("Startingscreen.png");
 				screen = 1;
