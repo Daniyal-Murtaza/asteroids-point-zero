@@ -308,13 +308,16 @@ void Game::run()
 				apz->create_small_asteroid();
 				apz->create_ufo();
 				apz->create_bonus();
+				apz->create_fire();
 				apz->draw_spaceship();
 				apz->draw_small_asteroid();
 				apz->draw_ufo();
 				apz->draw_bonus();
+				apz->draw_fire();
 				apz->draw_bullets();
 				apz->collision();
 				apz->draw_heart();
+				apz->display_score();
 				// apz->draw_Mid_Life();
 				// apz->draw_End_Life();
 			}
@@ -322,27 +325,32 @@ void Game::run()
 			{
 				apz->draw_medium();
 				apz->draw_tiny();
+				apz->draw_fire();
 				apz->create_ufo();
 				apz->create_bonus();
 				apz->draw_spaceship();
 				apz->create_medium();
+				apz->create_fire();
 				apz->create_tiny();
 				apz->draw_ufo();
 				apz->draw_bonus();
 				apz->draw_bullets();
 				apz->collision();
 				apz->draw_heart();
+				apz->display_score();
 				// apz->draw_Mid_Life();
 				// apz->draw_End_Life();
 			}
 			if (screen == 6)
 			{
 				apz->draw_hard();
+				apz->draw_fire();
 				apz->create_ufo();
 				apz->create_bonus();
 				apz->create_tiny();
 				apz->draw_spaceship();
 				apz->create_hard();
+				apz->create_fire();
 				apz->draw_bullets();
 				apz->draw_tiny();
 				apz->draw_bonus();
@@ -351,12 +359,12 @@ void Game::run()
 				// apz->draw_Mid_Life();
 				// apz->draw_End_Life();
 				apz->collision();
+				apz->display_score();
 			}
 		}
 		else
 		{
 			EndScreen();
-			apz->display_score();
 		}
 		//****************************************************************
 		SDL_RenderPresent(Drawing::gRenderer); // displays the updated renderer

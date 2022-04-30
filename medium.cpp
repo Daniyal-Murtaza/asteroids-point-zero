@@ -47,7 +47,7 @@ void Medium::fly()
             frame = 0;
             break;
         }
-        moverRect.y += 14;
+        moverRect.y += 8;
     }
     else
     {

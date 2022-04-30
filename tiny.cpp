@@ -1,6 +1,6 @@
 #include "tiny.hpp"
 
-Tiny::Tiny(int x) : Flying_Object({165, 360, 26, 23}, {x, 0, 40, 40}) {}
+Tiny::Tiny(int x) : Flying_Object({165, 360, 26, 23}, {x, 0, 70, 70}) {}
 
 void Tiny::fly()
 {
@@ -48,6 +48,7 @@ void Tiny::fly()
             break;
         }
         moverRect.y += 7;
+        moverRect.x += -1;
     }
     else
     {

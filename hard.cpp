@@ -1,6 +1,6 @@
 #include "hard.hpp"
 
-Hard::Hard(int x) : Flying_Object({9, 321, 33, 61}, {x, 0, 60, 60}) {}
+Hard::Hard(int x) : Flying_Object({9, 321, 33, 61}, {x, 0, 40, 40}) {}
 
 void Hard::fly()
 {
@@ -47,7 +47,7 @@ void Hard::fly()
             frame = 0;
             break;
         }
-        moverRect.y += 21;
+        moverRect.y += 20;
     }
     else
     {

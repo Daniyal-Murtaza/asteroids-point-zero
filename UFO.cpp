@@ -1,6 +1,6 @@
 #include "UFO.hpp"
 
-UFO::UFO(int x) : Flying_Object({13, 10, 72, 72}, {x, 0, 30, 30}) {}
+UFO::UFO(int x) : Flying_Object({13, 10, 72, 72}, {0, x, 30, 30}) {}
 
 void UFO::fly()
 {
@@ -33,7 +33,9 @@ void UFO::fly()
             frame = 6;
             break;
         }
-        moverRect.y += 10;
+        moverRect.y += 1;
+        moverRect.x += 5;
+        
     }
     else
     {

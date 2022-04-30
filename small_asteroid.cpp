@@ -1,6 +1,6 @@
 #include "small_asteroid.hpp"
 
-Small_Asteroid::Small_Asteroid(int x) : Flying_Object({11, 422, 33, 61}, {x, 0, 40, 40}) {}
+Small_Asteroid::Small_Asteroid(int x) : Flying_Object({11, 422, 33, 61}, {x, 0, 60, 60}) {}
 
 void Small_Asteroid::fly()
 {
@@ -47,7 +47,7 @@ void Small_Asteroid::fly()
             frame = 0;
             break;
         }
-        moverRect.y += 7;
+        moverRect.y += 4;
     }
     else
     {

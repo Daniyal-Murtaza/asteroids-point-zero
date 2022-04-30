@@ -17,6 +17,7 @@ using namespace std;
 #include <string>
 #include <list>
 #include "Bonus.hpp"
+#include "fire.hpp"
 
 using namespace std;
 #pragma once
@@ -35,6 +36,7 @@ private:
     list<Medium *> medium;
     list<Hard *> hard;
     list<Bonus *> bonus;
+    list<Fire *> fire;
     list<Tiny *> tiny;
     char const *num_char;
 
@@ -49,6 +51,7 @@ public:
     void draw_medium();
     void draw_hard();
     void draw_heart();
+    void draw_fire();
     void draw_bonus();
     void display_score();
     int get_score();
@@ -59,6 +62,7 @@ public:
     void create_tiny();
     void create_medium();
     void create_bonus();
+    void create_fire();
     void create_hard();
     void create_bullets(int x, int y);
     void checkMouseClick(int, int);

@@ -33,7 +33,7 @@ void Bonus::fly()
             frame = 0;
             break;
         }
-        moverRect.y += 15;
+        moverRect.y += 20;
     }
     else
     {
